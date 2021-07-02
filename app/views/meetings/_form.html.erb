@@ -1,0 +1,105 @@
+<%= form_with(model: meeting) do |form| %>
+  <% if meeting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+
+      <ul>
+        <% meeting.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.date_select :start_date %>
+  </div>
+
+  <div class="field">
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :start_time, '06:00',class: "form-check-input" %>
+      <%= form.label :start_time, '6:00', class: "form-check-label" %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :start_time, '07:00', class: "form-check-input" %>
+      <%= form.label :start_time, '7:00', class: "form-check-label" %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :start_time, '08:00', class: "form-check-input" %>
+      <%= form.label :start_time, '8:00', class: "form-check-label" %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :start_time, '09:00', class: "form-check-input" %>
+      <%= form.label :start_time, '9:00', class: "form-check-label"%>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :start_time, '10:00', class: "form-check-input" %>
+      <%= form.label :start_time, '10:00', class: "form-check-label" %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :start_time, '11:00', class: "form-check-input" %>
+      <%= form.label :start_time, '11:00', class: "form-check-label"%>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :start_time, '12:00', class: "form-check-input" %>
+      <%= form.label :start_time, '12:00', class: "form-check-label" %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :start_time, '13:00', class: "form-check-input" %>
+      <%= form.label :start_time, '13:00', class: "form-check-label"%>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :start_time, '14:00', class: "form-check-input" %>
+      <%= form.label :start_time, '14:00', class: "form-check-label" %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :start_time, '15:00', class: "form-check-input" %>
+      <%= form.label :start_time, '15:00', class: "form-check-label"%>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :start_time, '16:00', class: "form-check-input" %>
+      <%= form.label :start_time, '16:00', class: "form-check-label"%>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :start_time, '17:00', class: "form-check-input" %>
+      <%= form.label :start_time, '17:00', class: "form-check-label"%>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :start_time, '18:00', class: "form-check-input" %>
+      <%= form.label :start_time, '18:00', class: "form-check-label"%>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :start_time, '19:00', class: "form-check-input" %>
+      <%= form.label :start_time, '19:00', class: "form-check-label"%>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :start_time, '20:00', class: "form-check-input" %>
+      <%= form.label :start_time, '20:00', class: "form-check-label"%>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :start_time, '21:00', class: "form-check-input" %>
+      <%= form.label :start_time, '21:00', class: "form-check-label"%>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :start_time, '22:00', class: "form-check-input" %>
+      <%= form.label :start_time, '22:00', class: "form-check-label"%>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.radio_button :start_time, '23:00', class: "form-check-input" %>
+      <%= form.label :start_time, '23:00', class: "form-check-label"%>
+    </div>
+  </div>
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field mb-3">
+    <%= form.text_field :user_id, id: :meeting_user_id, class: 'form-control', value:current_user.id, type: :hidden %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
