@@ -1,0 +1,10 @@
+<%= week_calendar do |date| %>
+    
+    <% meetings.each do |meeting| %>
+        <%if date == meeting.start_date %>
+            <div>
+                <%= link_to meeting.description, meeting %>
+            </div>
+        <% end %>
+    <% end %>
+<% end %>
