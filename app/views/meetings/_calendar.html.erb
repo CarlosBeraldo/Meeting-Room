@@ -1,10 +1,12 @@
 <%= week_calendar do |date| %>
-    
-    <% meetings.each do |meeting| %>
-        <%if date == meeting.start_date %>
-            <div>
-                <%= link_to meeting.description, meeting %>
-            </div>
-        <% end %>
-    <% end %>
+    <%= date %>
 <% end %>
+
+<!--<% a = User.select("meetings.id,meetings.description,users.username").left_outer_joins(:meetings)%>
+<% a.each do |teste| %>
+    <%= teste.description %>
+<% end %>
+-->
+
+
+

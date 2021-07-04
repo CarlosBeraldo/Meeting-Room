@@ -1,0 +1,57 @@
+
+<div class="simple-calendar">
+  <div class="calendar-heading">
+    <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
+    <% if calendar.number_of_weeks == 1 %>
+      <span class="calendar-title"><%= t('simple_calendar.week', default: 'Week') %> <%= calendar.week_number %></span>
+    <% else %>
+      <span class="calendar-title"><%= t('simple_calendar.week', default: 'Week') %> <%= calendar.week_number %> - <%= calendar.end_week %></span>
+    <% end %>
+    <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Horario</th> 
+        <% date_range.slice(0, 5).each do |day| %>
+          <th><%= t('date.abbr_day_names')[day.wday] %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% date_range.each_slice(7) do |week| %>
+        <% week.pop(2) %>
+
+        <% 6.upto(23).each do |hour| %>
+          <tr>
+            <td>
+              <%= Time.parse("#{hour}:00").strftime("%H:%M") %>
+            </td>
+
+            <% week.each do |day| %>
+              <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+                <% a = @meetings.select("meetings.id,meetings.description,meetings.start_date,meetings.start_time,users.username").joins(:user).where(start_date: day, start_time: "#{hour}")%>
+                <% if a == [] %>
+                  <%= link_to 'Disponivel', new_meeting_path %>
+                <% else %>
+                  <% a.each do |meeting| %>
+                    <%if day == meeting.start_date && hour == meeting.start_time.strftime("%H").to_i%>
+                      <div>
+                        Criado por: <strong><%= link_to  meeting.username, meeting %></strong>
+                      </div>
+                    <% end %>                    
+                  <% end %>
+                <% end %>
+                
+              <% end %>
+            <% end %>
+            
+          </tr>      
+        <% end %>
+
+      <% end %>
+    </tbody>
+  </table>
+</div>
