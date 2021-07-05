@@ -10,6 +10,7 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/1 or /meetings/1.json
   def show
+    @currentTime = Time.now
   end
 
   # GET /meetings/new
@@ -18,6 +19,7 @@ class MeetingsController < ApplicationController
     @datePass = params[:start_date]
     @timePass = params[:start_time]
     @meetings = Meeting.all
+    @currentTime = Time.now
   end
 
   # GET /meetings/1/edit
