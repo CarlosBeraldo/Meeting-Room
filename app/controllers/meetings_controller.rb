@@ -15,6 +15,9 @@ class MeetingsController < ApplicationController
   # GET /meetings/new
   def new
     @meeting = current_user.meetings.build
+    @datePass = params[:start_date]
+    @timePass = params[:start_time]
+    @meetings = Meeting.all
   end
 
   # GET /meetings/1/edit
