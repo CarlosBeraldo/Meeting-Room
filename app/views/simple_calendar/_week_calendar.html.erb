@@ -49,7 +49,7 @@
                   <% end %>
                   
                   <% if !temReuniaoNoDiaNaHora %>
-                    <%= link_to 'Disponivel', new_meeting_path(start_date: day, start_time: "#{hour}:00") %>
+                    <%= link_to 'Disponivel', new_meeting_path(start_date: day, start_time: hour) %>
                   <% end %>
                   
               </td>
