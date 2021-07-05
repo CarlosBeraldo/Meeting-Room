@@ -10,7 +10,7 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/1 or /meetings/1.json
   def show
-    @currentTime = Time.now
+    @currentTime = Time.zone.now
   end
 
   # GET /meetings/new
