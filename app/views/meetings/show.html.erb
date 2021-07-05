@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<% horaConvertidaBrasil = @meeting.start_date.to_s+" "+@meeting.start_time.strftime("%H:%M")+" -3"%>
 <p>
   <strong>Start date:</strong>
   <%= @meeting.start_date %>
@@ -15,6 +15,8 @@
   <%= @meeting.description %>
 </p>
 
+<% if @currentTime < horaConvertidaBrasil && current_user.id == @meeting.user_id%>
+  <%= link_to 'Edit', edit_meeting_path(@meeting) %> |
+<% end %>
 
-<%= link_to 'Edit', edit_meeting_path(@meeting) %> |
 <%= link_to 'Back', meetings_path %>
