@@ -1,7 +1,13 @@
-<% reunioes = @meetings.where(start_date: @datePass, start_time: @timePass)%>
-<% horaConvertidaBrasil = @datePass+" "+@timePass+":00"+" -3"%>
+<% if @timePass.to_i < 6 || @timePass.to_i > 23%>
+  <% reunioes = ['Hello World'] %>
+<% else %>
+  <% horaSomadaFuso = @timePass.to_i + 2 %>
+  <% reunioes = @meetings.where(start_date: @datePass, start_time: horaSomadaFuso.to_s)%>
+  <% horaConvertidaBrasil = @datePass+" "+@timePass+":00"+" -3:00"%>
+  <% horaTimeConvertida = horaConvertidaBrasil.to_time %>
+<% end %>
 
-<% if reunioes == [] && @currentTime < horaConvertidaBrasil.to_datetime%>
+<% if reunioes == [] && @currentTime < horaTimeConvertida%>
   <%= form_with(model: meeting) do |form| %>
     <% if meeting.errors.any? %>
       <div id="error_explanation">
