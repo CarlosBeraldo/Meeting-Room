@@ -1,12 +1,9 @@
+<% reunioes = @meetings.select("meetings.id,meetings.description,meetings.start_date,meetings.start_time,users.username").joins(:user)%>
 
 <div class="simple-calendar">
   <div class="calendar-heading">
     <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
-    <% if calendar.number_of_weeks == 1 %>
-      <span class="calendar-title"><%= t('simple_calendar.week', default: 'Week') %> <%= calendar.week_number %></span>
-    <% else %>
-      <span class="calendar-title"><%= t('simple_calendar.week', default: 'Week') %> <%= calendar.week_number %> - <%= calendar.end_week %></span>
-    <% end %>
+    <span class="calendar-title"><%= t('date.month_names')[start_date.month] %><%= t('simple_calendar.week', default: ' Week') %> <%= calendar.week_number %></span>
     <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
   </div>
 
@@ -19,33 +16,43 @@
         <% end %>
       </tr>
     </thead>
-
     <tbody>
+      <td></td>
       <% date_range.each_slice(7) do |week| %>
         <% week.pop(2) %>
+
+        <% week.each do |day| %>
+          <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+            <%= day %>
+          <% end %>
+        <% end %>
 
         <% 6.upto(23).each do |hour| %>
           <tr>
             <td>
               <%= Time.parse("#{hour}:00").strftime("%H:%M") %>
-            </td>
-
+            </td>                    
+            
             <% week.each do |day| %>
-              <%= content_tag :td, class: calendar.td_classes_for(day) do %>
-                <% a = @meetings.select("meetings.id,meetings.description,meetings.start_date,meetings.start_time,users.username").joins(:user).where(start_date: day, start_time: "#{hour}")%>
-                <% if a == [] %>
-                  <%= link_to 'Disponivel', new_meeting_path %>
-                <% else %>
-                  <% a.each do |meeting| %>
-                    <%if day == meeting.start_date && hour == meeting.start_time.strftime("%H").to_i%>
+              <td>               
+                  <% temReuniaoNoDiaNaHora = false %>
+
+                  <% reunioes.each do |reuniao| %>
+
+                    <%if day == reuniao.start_date && hour == reuniao.start_time.strftime("%H").to_i%>
                       <div>
-                        Criado por: <strong><%= link_to  meeting.username, meeting %></strong>
+                        Criado por: <strong><%= link_to reuniao.username, reuniao %></strong> | <%= link_to 'Apagar', reuniao, method: :delete, data: { confirm: 'Are you sure?' } %>
                       </div>
-                    <% end %>                    
+                      <% temReuniaoNoDiaNaHora = true %>
+                    <% end %>
+
                   <% end %>
-                <% end %>
-                
-              <% end %>
+                  
+                  <% if !temReuniaoNoDiaNaHora %>
+                    <%= link_to 'Disponivel', new_meeting_path(start_date: day, start_time: "#{hour}:00") %>
+                  <% end %>
+                  
+              </td>
             <% end %>
             
           </tr>      
