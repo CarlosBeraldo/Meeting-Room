@@ -16,7 +16,7 @@
 </p>
 
 <% if @currentTime < horaConvertidaBrasil && current_user.id == @meeting.user_id%>
-  <%= link_to 'Edit', edit_meeting_path(@meeting) %> |
+  <%= link_to 'Edit', edit_meeting_path(@meeting, start_date: @meeting.start_date, start_time: @meeting.start_time.strftime("%H")) %> |
 <% end %>
 
 <%= link_to 'Back', meetings_path %>
