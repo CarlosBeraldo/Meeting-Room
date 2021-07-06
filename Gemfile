@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.3'
-gem 'pg', '~> 1.2', '>= 1.2.3'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4'
 # Use Puma as the app server
@@ -31,6 +31,7 @@ gem 'devise', '~> 4.8'
 gem 'simple_calendar', '~> 2.4', '>= 2.4.2'
 
 group :development, :test do
+  gem 'sqlite3', '~> 1.4', '>= 1.4.2'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
@@ -42,10 +43,10 @@ group :development do
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'rack-mini-profiler', '~> 2.0'
 end
-#group :production do
-  #gem 'pg', '~> 1.2', '>= 1.2.3'
+group :production do
+  gem 'pg', '~> 1.2', '>= 1.2.3'
   #gem 'rails_12factor', '0.0.2'
-#end
+end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
