@@ -4,7 +4,7 @@
 
 <br>
 
-##Tecnologias
+# Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
@@ -13,14 +13,14 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [postgree -Para hospedar no heroku](https://www.postgresql.org/)
 - [sqlite -Para usar no localhost](https://sqlite.org/index.html)
 
-#Hospedado pelo:
+# Hospedado pelo:
 - [Heroku](https://www.heroku.com)
 
-#URL para visualização:
+# URL para visualização:
 - [Reuniao](https://reuniao.herokuapp.com/)
 
 
-#Como executar
+# Como executar
 
 Clone o projeto e acesse a pasta do mesmo.
 
@@ -38,7 +38,7 @@ $ rails s
 ```
 O app estará disponível no seu browser pelo endereço http://localhost:3000.
 
-##Projeto
+# Projeto
 
 Meeting-Room pode ser usado para controlar reservas de uma sala de reunião, onde é possivel criar salas com horário e data, verificar reuniões criadas, de uma forma muito organizada. 
 
