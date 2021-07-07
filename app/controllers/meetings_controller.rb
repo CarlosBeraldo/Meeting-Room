@@ -5,7 +5,12 @@ class MeetingsController < ApplicationController
 
   # GET /meetings or /meetings.json
   def index
+    @currentTime = Time.zone.now
     @meetings = Meeting.all
+    if user_signed_in?
+      @meeting = current_user.meetings.build
+    end
+    
   end
 
   # GET /meetings/1 or /meetings/1.json
@@ -19,14 +24,14 @@ class MeetingsController < ApplicationController
     @datePass = params[:start_date]
     @timePass = params[:start_time]
     @meetings = Meeting.all
-    @currentTime = Time.now
+    @currentTime = Time.zone.now
   end
 
   # GET /meetings/1/edit
   def edit
     @datePass = params[:start_date]
     @timePass = params[:start_time]
-    @currentTime = Time.now
+    @currentTime = Time.zone.now
     @activeEdit = false
   end
 
