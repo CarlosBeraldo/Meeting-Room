@@ -1,0 +1,47 @@
+<% horaSomadaFuso = time.to_i + 2 %>
+<% horaConvertidaBrasil = date+" "+time+":00"+" -3:00"%>
+<% horaTimeConvertida = horaConvertidaBrasil.to_time %>
+
+<% if @currentTime < horaTimeConvertida%>
+  <%= form_with(model: meeting, local: false) do |form| %>
+    <% if meeting.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+
+        <ul>
+          <% meeting.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field">
+      <%= form.text_field :start_date, value:date, type: :hidden %>
+      <%= form.text_field :start_time, value:time, type: :hidden %>
+    </div>
+
+    <div class="field">
+      <span class= 'form-control'>Data: <%= date %></span>
+    </div>
+    <div class="field">
+      <span class= 'form-control'>Hora: <%= time+":00" %></span>
+    </div>
+
+    <div class="field">
+      <%= form.label :description, "Descrição" %>
+      <%= form.text_area :description, class: 'form-control' %>
+    </div>
+
+    <div class="field mb-3">
+      <%= form.text_field :user_id, id: :meeting_user_id, class: 'form-control', value:current_user.id, type: :hidden %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+<% else %>
+  <h1>Você não pode marcar reunião no passado!!</h1>
+<% end %>
+
+  
