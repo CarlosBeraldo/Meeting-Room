@@ -29,10 +29,7 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/1/edit
   def edit
-    @datePass = params[:start_date]
-    @timePass = params[:start_time]
     @currentTime = Time.zone.now
-    @meetings = Meeting.all
   end
 
   # POST /meetings or /meetings.json
