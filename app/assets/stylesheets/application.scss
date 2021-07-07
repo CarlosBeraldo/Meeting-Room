@@ -1,1 +1,27 @@
 @import "bootstrap/scss/bootstrap";
+
+body {
+    background-color: #cff4fc;
+}
+
+.bg-dark {
+    background-color: #062544 !important;
+}
+
+.alert {
+    display: flex;
+    justify-content: center !important;
+
+    h1 {
+        font-weight: 200;
+        padding-left: 2rem;
+    }
+
+    .alerta {
+        font-size: small;
+    }
+}
+
+.bg-info {
+    background-color: #cff4fc !important;
+}
