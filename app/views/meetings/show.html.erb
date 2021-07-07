@@ -24,7 +24,7 @@
         <p class="d-flex justify-content-between">
           <%= link_to 'Voltar', meetings_path, class: "btn btn-danger" %>
           <% if @currentTime < horaConvertidaBrasil && current_user.id == @meeting.user_id%>
-            <%= link_to 'Editar', edit_meeting_path(@meeting, start_date: @meeting.start_date, start_time: @meeting.start_time.strftime("%H")), class: "btn btn-primary" %>
+            <%= link_to 'Editar', edit_meeting_path(@meeting), class: "btn btn-primary" %>
           <% end %>
         </div>
       </div>
