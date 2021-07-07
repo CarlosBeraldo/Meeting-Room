@@ -1,5 +1,6 @@
 <% if user_signed_in? %>
-    <%= render "calendar", meetings: @meetings %>
+    <%= week_calendar do |date| %>
+    <% end %>
 <% else %>
-    <h1>You are not allowed to view this content</h1>
+    <h1>Para verificar as reunioes você precisa estar logado</h1>
 <% end %>
