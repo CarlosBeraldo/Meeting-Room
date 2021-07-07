@@ -42,7 +42,7 @@
 
                   <%if day == reuniao.start_date && hour == reuniao.start_time.strftime("%H").to_i%>
                     <div>
-                      Criado por: <strong><%= link_to reuniao.username, reuniao %></strong> | <%= link_to 'Apagar', reuniao, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-danger" %>
+                      Criado por: <strong><%= link_to reuniao.username, reuniao %></strong> | <%= link_to 'Apagar', reuniao,remote: :true, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-danger" %>
                     </div>
                     <% temReuniaoNoDiaNaHora = true %>
                   <% end %>
