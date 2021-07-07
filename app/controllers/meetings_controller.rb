@@ -32,7 +32,7 @@ class MeetingsController < ApplicationController
     @datePass = params[:start_date]
     @timePass = params[:start_time]
     @currentTime = Time.zone.now
-    @activeEdit = false
+    @meetings = Meeting.all
   end
 
   # POST /meetings or /meetings.json
