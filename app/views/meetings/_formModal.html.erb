@@ -3,45 +3,54 @@
 <% horaTimeConvertida = horaConvertidaBrasil.to_time %>
 
 <% if @currentTime < horaTimeConvertida%>
-  <%= form_with(model: meeting, local: false) do |form| %>
-    <% if meeting.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+  <div class="card-body">
+    <%= form_with(model: meeting, local: false) do |form| %>
+      <% if meeting.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
 
-        <ul>
-          <% meeting.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-    <div class="field">
+          <ul>
+            <% meeting.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
       <%= form.text_field :start_date, value:date, type: :hidden %>
       <%= form.text_field :start_time, value:time, type: :hidden %>
-    </div>
 
-    <div class="field">
-      <span class= 'form-control'>Data: <%= date %></span>
-    </div>
-    <div class="field">
-      <span class= 'form-control'>Hora: <%= time+":00" %></span>
-    </div>
+      <div class="mb-3">
+        <span class= 'form-control'>Data: <%= date %></span>
+      </div>
+      <div class="mb-3">
+        <span class= 'form-control'>Hora: <%= time+":00" %></span>
+      </div>
 
-    <div class="field">
-      <%= form.label :description, "Descrição" %>
-      <%= form.text_area :description, class: 'form-control' %>
-    </div>
+      <div class="mb-3">
+        <%= form.label :description, "Descrição" %>
+        <%= form.text_area :description, class: 'form-control' %>
+      </div>
 
-    <div class="field mb-3">
       <%= form.text_field :user_id, id: :meeting_user_id, class: 'form-control', value:current_user.id, type: :hidden %>
-    </div>
 
-    <div class="actions">
-      <%= form.submit %>
+      <div class="actions">
+        <%= form.submit class: "btn btn-primary" %>
     </div>
-  <% end %>
+  </div>
+<% end %>
 <% else %>
-  <h1>Você não pode marcar reunião no passado!!</h1>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+    </symbol>
+  </svg>
+  <div class="container">
+    <div class="alert alert-danger d-flex align-items-center" role="alert">
+      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+      <h1>Você não pode marcar reunião no passado!!</h1>
+    </div>
+  </div>
 <% end %>
 
   
