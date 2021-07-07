@@ -10,8 +10,8 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - [Ruby on rails](https://guides.rubyonrails.org/)
 - [Bootstrap](https://getbootstrap.com/)
-- [postgree -Para hospedar no heroku](https://www.postgresql.org/)
-- [sqlite -Para usar no localhost](https://sqlite.org/index.html)
+- [PostgreSQL -Para hospedar no heroku](https://www.postgresql.org/)
+- [SQLite3 -Para usar no localhost](https://sqlite.org/index.html)
 
 # Hospedado pelo:
 - [Heroku](https://www.heroku.com)
