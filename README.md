@@ -16,7 +16,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 #Hospedado pelo:
 - [Heroku](https://www.heroku.com)
 
-#URL para visualização
+#URL para visualização:
 -[Reuniao](https://reuniao.herokuapp.com/)
 
 #Como executar
