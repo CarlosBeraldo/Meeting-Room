@@ -1,22 +1,33 @@
-<p id="notice"><%= notice %></p>
 <% horaConvertidaBrasil = @meeting.start_date.to_s+" "+@meeting.start_time.strftime("%H:%M")+" -3"%>
-<p>
-  <strong>Start date:</strong>
-  <%= @meeting.start_date %>
-</p>
-
-<p>
-  <strong>Start time:</strong>
-  <%= @meeting.start_time.strftime("%H:%M") %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @meeting.description %>
-</p>
-
-<% if @currentTime < horaConvertidaBrasil && current_user.id == @meeting.user_id%>
-  <%= link_to 'Edit', edit_meeting_path(@meeting, start_date: @meeting.start_date, start_time: @meeting.start_time.strftime("%H")) %> |
-<% end %>
-
-<%= link_to 'Back', meetings_path %>
+<div class="container w-25" >
+  <div class="card mt-4">
+    <div class="card-body">
+      <div class="mb-3">
+        <p>
+          <strong >Start date:</strong>
+          <input class="form-control" type="text" placeholder="<%= @meeting.start_date %>" aria-label="Disabled input example" disabled>
+        </p>
+      </div>
+      <div class="mb-3">
+        <p>
+          <strong >Start time:</strong>
+          <input class="form-control" type="text" placeholder="<%= @meeting.start_time.strftime("%H:%M") %>" aria-label="Disabled input example" disabled>
+        </p>
+      </div>
+      <div class="mb-3">
+        <strong >Descrição:</strong>
+        <div class="form-floating">
+          <textarea class="form-control" placeholder="" id="floatingTextarea2" style="height: 100px" disabled><%= @meeting.description %></textarea>
+        </div>
+      </div>
+      <div class="mb-3">
+        <p class="d-flex justify-content-between">
+          <%= link_to 'Voltar', meetings_path, class: "btn btn-danger" %>
+          <% if @currentTime < horaConvertidaBrasil && current_user.id == @meeting.user_id%>
+            <%= link_to 'Editar', edit_meeting_path(@meeting, start_date: @meeting.start_date, start_time: @meeting.start_time.strftime("%H")), class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
